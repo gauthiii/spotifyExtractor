@@ -4,8 +4,8 @@ import csv
 import time
 
 def main():
-    client_id = 'id'  # Substitute with your actual client ID
-    client_secret = 'id'  # Substitute with your actual client secret
+    client_id = 'e46562d0da7f4f5ca15d5a06fd821383'  # Substitute with your actual client ID
+    client_secret = 'a9ded01958904c2992be25343fc4d3cd'  # Substitute with your actual client secret
     credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
     sp = spotipy.Spotify(client_credentials_manager=credentials_manager)
 
@@ -39,10 +39,10 @@ def main():
         offset = 0
         limit = 50
         more_tracks = True
-        artist ="BTS"
+        artist ="Asal Kolaar"
         x=0
         while more_tracks:
-            results = sp.search(q='year:2013 artist:'+artist, type='track', limit=limit, offset=offset)
+            results = sp.search(q='year:2021 artist:'+artist, type='track', limit=limit, offset=offset)
             tracks = results['tracks']['items']
 
             if not tracks:
@@ -52,6 +52,7 @@ def main():
             for track in tracks:
                 track_id = track['id']
                 track_name = track['name']
+                print(track_name)
                 artist_name = ', '.join(artist['name'] for artist in track['artists'])  # Join all artist names
                 release_year = track['album']['release_date'][:4]
                 artwork_url = track['album']['images'][0]['url'] if track['album']['images'] else 'No artwork available'
@@ -70,9 +71,9 @@ def main():
                 #     scale_note = 'N/A'
                 # and ("Adele," in artist_name or len(artist_name)==len(artist))
 
-                # Append data to CSV
-                if track['id'] not in track_ids and (len(artist_name)==len(artist))  :        
-                    writer.writerow([track_id, track_name, artist_name, release_year,track['popularity'],artwork_url,track['album']['name']]+[''] * 14)
+                # Append data to CSV "(Husn," in artist_name or len(artist_name)==len(artist))
+                if track['id'] not in track_ids  :        
+                    writer.writerow([track_id, track_name, artist_name, release_year,track['popularity'],artwork_url,track['album']['name']]+[''] * 14+["Tamil"])
                 track_ids.add(track['id'])
                 # time.sleep(1)
 

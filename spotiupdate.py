@@ -118,7 +118,7 @@ def fetch_album_details(track_id, access_token,count):
 def update_album_names(data, access_token):
     count = 0
     for index, row in data.iterrows():
-        if pd.isna(row['duration_ms']) and not(pd.isna(row['acousticness']))  and count < 2:
+        if pd.isna(row['duration_ms']) and not(pd.isna(row['acousticness']))  and count < 20:
             duration,url = fetch_album_details(row['track_id'], access_token,count)
             if duration:
                 data.at[index, 'duration_ms'] = duration
@@ -131,7 +131,7 @@ def update_album_names(data, access_token):
 def update_track_features(data, access_token):
     count = 0
     for index, row in data.iterrows():
-        if pd.isna(row['acousticness']) and count < 250:  # Assuming 'Audio Features' is a placeholder for any feature
+        if pd.isna(row['acousticness']) and count < 1000:  # Assuming 'Audio Features' is a placeholder for any feature
             features = fetch_track_audio_features(row['track_id'], access_token, count,index)
             if features==0:
                 break
@@ -147,7 +147,7 @@ def update_track_features(data, access_token):
 
     return data
 #6srj5VAeLXSSTYcfbNYO8h
-tok=get_spotify_token("id","id")
+tok=get_spotify_token("151a89e56fe14a879110c42278ad8698","2b9c220642104c5987528454125ed099")
 # Run the update function with your access token
 updated_data = update_album_names(data, tok)
 updated_data1 = update_track_features(updated_data, tok)
