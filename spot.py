@@ -4,7 +4,7 @@ import csv
 import time
 
 def main():
-    client_id = 'e46562d0da7f4f5ca15d5a06fd821383'  # Substitute with your actual client ID
+    client_id = 'e46562d0da7f4f5ca15d5a06fd821383'  # Substitute with your actual client ID f
     client_secret = 'a9ded01958904c2992be25343fc4d3cd'  # Substitute with your actual client secret
     credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
     sp = spotipy.Spotify(client_credentials_manager=credentials_manager)
